@@ -109,8 +109,54 @@ function outputArticleSchema() {
                     <meta itemprop="datePublished" content="<?php the_time( 'c', $post->ID ); ?>"/>
                     <meta itemprop="dateModified" content="<?php the_modified_time( 'c', $post->ID ); ?>"/>
                 </div>
+
+
+                <!-- Hentry Post Output -->
+                
+                <script>
+                    {
+                    "items": [
+                      {
+                        "type": [
+                          "h-entry"
+                        ],
+                        "properties": {
+                          "name": [
+                            "<?php the_title($post->ID); ?>"
+                          ],
+                          "author": [
+                            {
+                              "value": "<?php the_author($post->ID); ?>",
+                              "type": [
+                                "h-card"
+                              ]
+                            }
+                          ],
+                          "published": [
+                            "<?php the_time( 'c', $post->ID ); ?>"
+                          ],
+                          "summary": [
+                            "<?php the_excerpt($post->ID); ?>"
+                          ],
+                          "content": [
+                            {
+                              "value": "<?php the_excerpt($post->ID); ?>",
+                              "html": "<?php the_excerpt($post->ID); ?>"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                </script>
+                
                 <?php
             }
+        }
+        else{
+            ?>
+                <!-- Hentry Archive Output -->
+            <?php
         }
     }
     
