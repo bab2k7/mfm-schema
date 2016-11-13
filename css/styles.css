@@ -1,0 +1,52 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31-Mar-2016, 19:14:25
+    Author     : Billy
+*/
+
+.mfm-schema-settings .page-container{
+    padding:20px;
+}
+
+.mfm-schema-settings .tab-header{
+    padding:10px 10px;
+    border:1px solid #aaa;
+    display:inline-block;
+    cursor:pointer;
+}
+
+.mfm-schema-settings .tab-header.active{
+    background:#aaa;
+}
+
+.mfm-schema-settings .tab-data{
+    padding:10px;
+    display:none;
+    border:1px solid #aaa;
+}
+
+.mfm-schema-settings .tab-data.active{
+    display:block;
+}
+.mfm-schema-settings .input-wrapper{
+    margin-bottom:5px;
+}
+.mfm-schema-settings .input-wrapper label{
+    width:200px;
+    display:inline-block;
+}
+
+.mfm-schema-settings .tab-datas h2.col-head{
+    float:left;
+    width: 200px;
+    display:inline-block;
+}
+.mfm-schema-settings .headers{
+    width: 100%;
+    display: block;
+    height: 55px;
+}
