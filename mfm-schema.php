@@ -32,8 +32,16 @@ function mfm_schema() {
     add_submenu_page('mfm_menu','MFM Schema', 'MFM Schema', 'manage_options', 'mfm_schema', 'mfmSchema');
     
 }
-include( plugin_dir_path( __FILE__ ) . 'inc/globalschema.php');
+
+
+require_once( plugin_dir_path( __FILE__ ) .'inc/auto-updates.php' );
+if ( is_admin() ) {
+    new GitHubPluginUpdater( __FILE__, 'bab2k7', "mfm-schema" );
+}
+
+
 include( plugin_dir_path( __FILE__ ) . 'inc/schemaoutput.php');
+include( plugin_dir_path( __FILE__ ) . 'inc/globalschema.php');
 
 if ( is_admin() ){ // admin actions
   add_action( 'admin_init', 'register_mfmrmsettings' );

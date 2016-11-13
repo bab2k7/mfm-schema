@@ -154,9 +154,7 @@ function outputArticleSchema() {
             }
         }
         else{
-            ?>
-                <!-- Hentry Archive Output -->
-            <?php
+            
         }
     }
     
