@@ -154,7 +154,6 @@ class GitHubPluginUpdater {
 
         return $response;
         
-        return $response;
     }
  
     // Perform additional actions to successfully install our plugin
@@ -172,13 +171,11 @@ class GitHubPluginUpdater {
         $result['destination'] = $pluginFolder;
         
         // Re-activate plugin if needed
-if ( $wasActivated ) {
-    $activate = activate_plugin( $this->slug );
-}
- 
-return $result;
-        
-        
+        if ( $wasActivated ) {
+            $activate = activate_plugin( $this->slug );
+        }
+
         return $result;
+        
     }
 }

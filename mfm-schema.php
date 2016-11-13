@@ -3,7 +3,7 @@
  * Plugin Name: MFM Schema.org Markup
  * Plugin URI: http://www.monkeyfishmarketing.com  
  * Description: This plugin will implement Schema.org markup onto the website
- * Version: 2.0.5
+ * Version: 2.0
  * Author: Billy Bleasdale (Mav Jervis edited)
  * License: GPL2
  */
@@ -34,7 +34,7 @@ function mfm_schema() {
 }
 
 
-require_once( plugin_dir_path( __FILE__ ) .'inc/auto-updates.php' );
+require_once( plugin_dir_path( __FILE__ ) .'auto-updates.php' );
 if ( is_admin() ) {
     new GitHubPluginUpdater( __FILE__, 'bab2k7', "mfm-schema" );
 }
