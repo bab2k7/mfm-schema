@@ -9,49 +9,93 @@
 function outputSchema() {
     if(get_option('org-enabled')){
         ?>
-        <div id="schema-data-organisation" style="display: none !important;">
-            <div itemscope itemtype="http://schema.org/Organization">
-                <span itemprop="brand"><?php echo get_option('org-brand'); ?></span>
-                <span itemprop="url"><?php echo get_option('org-website_url'); ?></span>
-                <span itemprop="logo"><?php echo get_option('org-logo_url'); ?></span>
-                <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                    <span itemprop="streetAddress"><?php echo get_option('org-street'); ?></span>
-                    <span itemprop="addressLocality"><?php echo get_option('org-town'); ?></span>
-                    <span itemprop="addressRegion"><?php echo get_option('org-county'); ?></span>
-                    <span itemprop="postalCode"><?php echo get_option('org-postcode'); ?></span>
-                    <span itemprop="addressCountry"><?php echo get_option('org-country'); ?></span>
-                </div>
-                <div itemprop="contactPoint" itemscope itemtype="http://schema.org/ContactPoint">
-                    <span itemprop="contactType">Customer Services</span>
-                    <span itemprop="email"><?php echo get_option('org-email'); ?></span>
-                    <span itemprop="telephone"><?php echo get_option('org-telephone'); ?></span>
-                    <span itemprop="faxNumber"><?php echo get_option('org-fax'); ?></span>
-                </div>
-            </div>
-        </div>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "url": "<?php echo get_option('org-website_url'); ?>",
+                "logo": "<?php echo get_option('org-logo_url'); ?>",
+                "email": "mailto:<?php echo get_option('org-email'); ?>",
+                "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "<?php echo get_option('org-town'); ?>",
+                                "addressRegion": "<?php echo get_option('org-county'); ?>",
+                                "addressCountry":"<?php echo get_option('org-country'); ?>",
+                                "postalCode": "<?php echo get_option('org-postcode'); ?>",
+                                "streetAddress": "<?php echo get_option('org-street'); ?>"
+                },
+                "brand": "<?php echo get_option('org-brand'); ?>",
+                "telephone": "<?php echo get_option('org-telephone'); ?>",
+                "faxNumber": "<?php echo get_option('org-fax'); ?>"
+            }
+        </script>
+
         <?php if(get_option('place-enabled')){ ?>
-        <div id="schema-data-place" style="display: none !important;">
-            <div itemscope itemtype="http://schema.org/Place">
-                <span itemprop="photo"><?php echo get_option('place-photo'); ?></span>
-                <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-                    <span itemprop="latitude"><?php echo get_option('place-latitude'); ?></span>
-                    <span itemprop="longitude"><?php echo get_option('place-longitude'); ?></span>
-                </div>
-            </div>
-        </div>
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "Place",            
+            "geo": {
+                            "@type": "GeoCoordinates",
+                            "latitude": "<?php echo get_option('place-latitude'); ?>",
+                            "longitude": "<?php echo get_option('place-longitude'); ?>"
+            },
+            "photo": "<?php echo get_option('place-photo'); ?>"
+        }
+        </script>
         <?php } ?>
         <?php if(get_option('local-enabled')){ ?>
-        <div id="schema-data-localbusiness" style="display: none !important;">
-            <div itemscope itemtype="http://schema.org/LocalBusiness">
-                <time itemprop="openingHours" datetime="Mo <?php echo get_option('local-times-mon'); ?>" />
-                <time itemprop="openingHours" datetime="Tu <?php echo get_option('local-times-tue'); ?>" />
-                <time itemprop="openingHours" datetime="We <?php echo get_option('local-times-wed'); ?>" />
-                <time itemprop="openingHours" datetime="Th <?php echo get_option('local-times-thu'); ?>" />
-                <time itemprop="openingHours" datetime="Fr <?php echo get_option('local-times-fri'); ?>" />
-                <time itemprop="openingHours" datetime="Sa <?php echo get_option('local-times-sat'); ?>" />
-                <time itemprop="openingHours" datetime="Su <?php echo get_option('local-times-sun'); ?>" />
-            </div>
-        </div>
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "LocalBusiness",
+                
+                "openingHoursSpecification": [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "closes":  "<?php echo get_option('local-close-times-sun'); ?>",
+                      "dayOfWeek": "http://schema.org/Sunday",
+                      "opens":  "<?php echo get_option('local-open-times-sun'); ?>"
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "closes": "<?php echo get_option('local-close-times-sat'); ?>" ,
+                      "dayOfWeek": "http://schema.org/Saturday",
+                      "opens": "<?php echo get_option('local-open-times-sat'); ?>"
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "closes":  "<?php echo get_option('local-close-times-thu'); ?>",
+                      "dayOfWeek": "http://schema.org/Thursday",
+                      "opens": "<?php echo get_option('local-open-times-thu'); ?>"
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "closes": "<?php echo get_option('local-close-times-tue'); ?>",
+                      "dayOfWeek": "http://schema.org/Tuesday",
+                      "opens": "<?php echo get_option('local-open-times-tue'); ?>"
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "closes": "<?php echo get_option('local-close-times-fri'); ?>",
+                      "dayOfWeek":  "http://schema.org/Friday",
+                      "opens": "<?php echo get_option('local-open-times-fri'); ?>"
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "closes": "<?php echo get_option('local-close-times-mon'); ?>",
+                      "dayOfWeek": "http://schema.org/Monday",
+                      "opens": "<?php echo get_option('local-open-times-mon'); ?>"
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "closes": "<?php echo get_option('local-close-times-wed'); ?>",
+                      "dayOfWeek":  "http://schema.org/Wednesday",
+                      "opens": "<?php echo get_option('local-open-times-wed'); ?>"
+                    }
+                ]
+            }
+        </script>
         <?php } ?>
         <?php
     }
@@ -77,38 +121,39 @@ function outputArticleSchema() {
             }
             if($outputArtSchema){
                 ?>
-                <div itemscope itemtype="http://schema.org/NewsArticle" style="display:none;">
-                    <meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="https://google.com/article"/>
-                    <div itemprop="headline"><?php the_title($post->ID); ?></div>
-                    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
-                        By <span itemprop="name"><?php the_author($post->ID); ?></span>
-                    </div>
-                    <span itemprop="description"><?php the_excerpt($post->ID); ?></span>
-                    <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                        <?php if (the_post_thumbnail_url($post->ID, 'thumbnail' )){?>
-						<img src="<?php the_post_thumbnail_url($post->ID, 'thumbnail' ); ?>"/>						
-						<meta itemprop="url" content="<?php the_post_thumbnail_url($post->ID, 'thumbnail' ); ?>">
-                        <meta itemprop="width" content="150">
-                        <meta itemprop="height" content="150">	
-						<?php }else{ ?>	
-						<img src="<?php echo get_option('org-logo_url'); ?>"/>						
-						<meta itemprop="url" content="<?php echo get_option('org-logo_url'); ?>">
-                        <meta itemprop="width" content="150">
-                        <meta itemprop="height" content="150">
-						<?php } ?>
-                    </div>
-                    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                            <img src="<?php echo get_option('org-logo_url'); ?>"/>
-                            <meta itemprop="url" content="<?php echo get_option('org-logo_url'); ?>">
-                            <meta itemprop="width" content="300">
-                            <meta itemprop="height" content="200">
-                        </div>
-                        <meta itemprop="name" content="<?php echo get_option('org-brand'); ?>">
-                    </div>
-                    <meta itemprop="datePublished" content="<?php the_time( 'c', $post->ID ); ?>"/>
-                    <meta itemprop="dateModified" content="<?php the_modified_time( 'c', $post->ID ); ?>"/>
-                </div>
+                <script type="application/ld+json">
+                {
+                  "@context": "http://schema.org",
+                  "@type": "NewsArticle",
+                  "mainEntityOfPage":{
+                    "@type":"WebPage"
+                  },
+                  "headline": "<?php the_title($post->ID); ?>",
+                  "image": {
+                    "@type": "ImageObject",
+                    "url": "<?php the_post_thumbnail_url($post->ID, 'thumbnail' ); ?>",
+                    "height": "150",
+                    "width": "150"
+                  },
+                  "datePublished": "<?php the_time( 'c', $post->ID ); ?>",
+                  "dateModified": "<?php the_modified_time( 'c', $post->ID ); ?>",
+                  "author": {
+                    "@type": "Person",
+                    "name": "<?php the_author($post->ID); ?>"
+                  },
+                   "publisher": {
+                    "@type": "Organization",
+                    "name": "<?php echo get_option('org-brand'); ?>",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "<?php echo get_option('org-logo_url'); ?>",
+                      "width": "200",
+                      "height": "200"
+                    }
+                  },
+                  "description": "<?php echo wp_strip_all_tags(get_the_excerpt($post->ID)); ?>"
+                }
+                </script>
 
 
                 <!-- Hentry Post Output -->
