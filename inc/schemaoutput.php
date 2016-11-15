@@ -158,7 +158,7 @@ function outputArticleSchema() {
 
                 <!-- Hentry Post Output -->
                 
-                <script>
+                <script type="application/ld+json">
                     {
                     "items": [
                       {
