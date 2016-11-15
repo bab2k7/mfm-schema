@@ -40,7 +40,7 @@ and open the template in the editor.
     display:inline-block;
 }
 
-.mfm-schema-settings .tab-datas h2.col-head{
+.mfm-schema-settings .tab-datas h4.col-head{
     float:left;
     width: 200px;
     display:inline-block;

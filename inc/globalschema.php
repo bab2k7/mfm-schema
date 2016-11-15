@@ -142,8 +142,10 @@ function mfmSchema() {
                     </div>
                     <div class="tab-data tab-local">
                         <div class="headers">
-                            <h2 class="col-head">Local Business</h2><h2 class="col-head">Open</h2><h2 class="col-head">Close</h2>
+                            <h2 class="">Local Business</h2>
+                            <h4 class="col-head">&nbsp;</h4><h4 class="col-head">Open</h4><h4 class="col-head">Close</h4>
                         </div>
+                        <div class="clearfix"></div>
                         <div class="input-wrapper">
                             <label for="enable-menu">Opening Hours Monday: </label>
                             <input type="text" name="local-open-times-mon" value="<?php echo get_option('local-open-times-mon'); ?>">
