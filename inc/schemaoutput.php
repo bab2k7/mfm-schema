@@ -128,18 +128,18 @@ function outputArticleSchema() {
                   "mainEntityOfPage":{
                     "@type":"WebPage"
                   },
-                  "headline": "<?php the_title($post->ID); ?>",
+                  "headline": "<?php echo get_the_title($post->ID); ?>",
                   "image": {
                     "@type": "ImageObject",
                     "url": "<?php the_post_thumbnail_url($post->ID, 'thumbnail' ); ?>",
                     "height": "150",
                     "width": "150"
                   },
-                  "datePublished": "<?php the_time( 'c', $post->ID ); ?>",
+                  "datePublished": "<?php echo get_the_time( 'c', $post->ID ); ?>",
                   "dateModified": "<?php the_modified_time( 'c', $post->ID ); ?>",
                   "author": {
                     "@type": "Person",
-                    "name": "<?php the_author($post->ID); ?>"
+                    "name": "<?php echo get_the_author($post->ID); ?>"
                   },
                    "publisher": {
                     "@type": "Organization",
@@ -157,49 +157,28 @@ function outputArticleSchema() {
 
 
                 <!-- Hentry Post Output -->
+                <div class="hentry-data" style="display:none!important;">
+                    <div class="entry-title"><?php echo get_the_title($post->ID); ?></div>
+                    <div class="updated"><?php echo get_the_time( 'c', $post->ID ); ?></div>
+                    <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author($post->ID); ?></span></div>
+                </div>
                 
-                <script type="application/ld+json">
-                    {
-                    "items": [
-                      {
-                        "type": [
-                          "h-entry"
-                        ],
-                        "properties": {
-                          "name": [
-                            "<?php the_title($post->ID); ?>"
-                          ],
-                          "author": [
-                            {
-                              "value": "<?php the_author($post->ID); ?>",
-                              "type": [
-                                "h-card"
-                              ]
-                            }
-                          ],
-                          "published": [
-                            "<?php the_time( 'c', $post->ID ); ?>"
-                          ],
-                          "summary": [
-                            "<?php the_excerpt($post->ID); ?>"
-                          ],
-                          "content": [
-                            {
-                              "value": "<?php the_excerpt($post->ID); ?>",
-                              "html": "<?php the_excerpt($post->ID); ?>"
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                </script>
                 
                 <?php
             }
-        }
+        } 
         else{
-            
+            if(have_posts()) : while(have_posts()) : the_post();
+            ?>
+             <div class="hentry-data" style="display:none!important;">
+                    <div class="entry-title"><?php echo get_the_title($post->ID); ?></div>
+                    <div class="updated"><?php echo get_the_time( 'c', $post->ID ); ?></div>
+                    <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author($post->ID); ?></span></div>
+                </div>
+                
+               <?php 
+        endwhile; endif;
+
         }
     }
     
