@@ -157,7 +157,7 @@ function outputArticleSchema() {
 
 
                 <!-- Hentry Post Output -->
-                <div class="hentry-data" style="display:none!important;">
+                <div class="hentry-data hentry" style="display:none!important;">
                     <div class="entry-title"><?php echo get_the_title($post->ID); ?></div>
                     <div class="updated"><?php echo get_the_time( 'c', $post->ID ); ?></div>
                     <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author($post->ID); ?></span></div>
@@ -170,7 +170,7 @@ function outputArticleSchema() {
         else{
             if(have_posts()) : while(have_posts()) : the_post();
             ?>
-             <div class="hentry-data" style="display:none!important;">
+             <div class="hentry-data hentry" style="display:none!important;">
                     <div class="entry-title"><?php echo get_the_title($post->ID); ?></div>
                     <div class="updated"><?php echo get_the_time( 'c', $post->ID ); ?></div>
                     <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author($post->ID); ?></span></div>
