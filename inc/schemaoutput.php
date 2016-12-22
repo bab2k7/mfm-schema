@@ -49,10 +49,11 @@ function outputSchema() {
             {
                 "@context": "http://schema.org",
                 "@type": "LocalBusiness",
-                
+                "name": "<?php echo get_option('org-brand'); ?>",
+                "image": "<?php echo get_option('org-logo_url'); ?>",   
                 "openingHoursSpecification": [
                     {
-                      "@type": "OpeningHoursSpecification",
+                      "@type": "OpeningHoursSpecification", 
                       "closes":  "<?php echo get_option('local-close-times-sun'); ?>",
                       "dayOfWeek": "http://schema.org/Sunday",
                       "opens":  "<?php echo get_option('local-open-times-sun'); ?>"
@@ -183,4 +184,4 @@ function outputArticleSchema() {
     }
     
     
-}
+} 
