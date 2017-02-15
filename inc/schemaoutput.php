@@ -140,7 +140,7 @@ function outputArticleSchema() {
                   "dateModified": "<?php the_modified_time( 'c', $post->ID ); ?>",
                   "author": {
                     "@type": "Person",
-                    "name": "<?php echo get_the_author($post->ID); ?>"
+                    "name": "<?php echo get_the_author(); ?>"
                   },
                    "publisher": {
                     "@type": "Organization",
@@ -161,7 +161,7 @@ function outputArticleSchema() {
                 <div class="hentry-data hentry" style="display:none!important;">
                     <div class="entry-title"><?php echo get_the_title($post->ID); ?></div>
                     <div class="updated"><?php echo get_the_time( 'c', $post->ID ); ?></div>
-                    <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author($post->ID); ?></span></div>
+                    <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author(); ?></span></div>
                 </div>
                 
                 
@@ -174,7 +174,7 @@ function outputArticleSchema() {
              <div class="hentry-data hentry" style="display:none!important;">
                     <div class="entry-title"><?php echo get_the_title($post->ID); ?></div>
                     <div class="updated"><?php echo get_the_time( 'c', $post->ID ); ?></div>
-                    <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author($post->ID); ?></span></div>
+                    <div class="vcard author author_name" style="display:none !important;"><span class="fn"><?php echo get_the_author(); ?></span></div>
                 </div>
                 
                <?php 
@@ -185,3 +185,26 @@ function outputArticleSchema() {
     
     
 } 
+
+function outputEventTracking(){
+    ?>
+<script>
+	jQuery('a[href^="tel:"]').click(function() {
+		ga('send', 'event', 'Phone Number', 'Click', '<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>');
+	});
+</script>
+
+<script>
+	jQuery('a[href^="mailto:"]').click(function() {
+		ga('send', 'event', 'Email Address', 'Click', '<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>');
+	});
+</script>
+
+<script>	
+	jQuery('a[href$=".pdf"]').click(function() {
+		var brochureLink = jQuery(this).attr('href');
+		ga('send', 'event', 'download', 'click', brochureLink);
+	});
+</script>       
+    <?php
+}
